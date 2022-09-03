@@ -119,4 +119,3 @@ submitBtn.addEventListener('click', e => {
         interestValidation()
     };
 });
-
