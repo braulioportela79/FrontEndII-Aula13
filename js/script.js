@@ -1,14 +1,27 @@
 const qs = (e) => document.querySelector(e);
-const qsa = (e) => document.querySelectorAll(e);
 
-const inputName = qs('#name');
-const inputEmail = qs('#mail');
-const inputPassword = qs('#password');
-const submitBtn = qs('#submit');
-const inputAge = qs('#under_18');
-const inputBio = qs('#bio');
-const inputJob = qs('#job');
+const nameId = '#name'
+const inputName = qs(nameId);
+
+const emailId = '#email'
+const inputEmail = qs(emailId);
+
+const passwordId = '#password'
+const inputPassword = qs(passwordId);
+
+const bioId = '#bio';
+const inputBio = qs(bioId);
+
+const ageId = '#under_18';
+const inputAge = qs(ageId);
+
+const jobId = '#job';
+const inputJob = qs(jobId);
+
 const inputInterests = document.getElementsByName('user_interest');
+
+const submitBtn = qs('#submit');
+
 const form = qs('form');
 
 inputInterests[0].setCustomValidity('invalid');
@@ -22,59 +35,49 @@ let checkFormValidity = () => {
     };
 };
 
-inputName.addEventListener('keyup', () => {
-    if (inputName.checkValidity()) {
-        qs('#name-validation').innerText = '';
-    } else {
-        qs('#name-validation').innerText = 'Mínimo 5 caracteres';
-    };
-    checkFormValidity();
-});
+let inputValidation = (e, v) => {
+    e.addEventListener('keyup', () => {
+        if (e.id == 'name') {
+            if (e.checkValidity()) {
+                qs(v).innerText = '';
+            } else {
+                qs(v).innerText = 'Mínimo 5 caracteres';
+            };
+        } else if (e.id == 'email') {
+            if (e.checkValidity()) {
+                qs(v).innerText = '';
+            } else {
+                qs(v).innerText = 'Email inválido';
+            };
+        } else if (e.id == 'password') {
+            if (e.checkValidity()) {
+                qs(v).innerText = '';
+            } else {
+                qs(v).innerText = 'Mínimo 6 caracteres. Máximo 20 caracteres.';
+            };
+        } else if (e.id == 'bio') {
+            if (e.checkValidity()) {
+                qs(v).innerText = '';
+            } else {
+                qs(v).innerText = 'Mínimo 20 caracteres.';
+            };
+        }
+        checkFormValidity();
+    });
 
-inputEmail.addEventListener('keyup', () => {
-    if (inputEmail.checkValidity()) {
-        qs('#email-validation').innerText = '';
-    } else {
-        qs('#email-validation').innerText = 'Email inválido';
-    };
-    checkFormValidity();
-});
+    e.addEventListener('click', () => {
+        if (e.id == 'under_18' || e.id == 'job') {
+            checkFormValidity();
+        };
+    });
+};
 
-inputPassword.addEventListener('keyup', () => {
-    if (inputPassword.checkValidity()) {
-        qs('#password-validation').innerText = '';
-    } else {
-        qs('#password-validation').innerText = 'Mínimo 6 caracteres. Máximo 20 caracteres.';
-    };
-    checkFormValidity();
-});
-
-inputAge.addEventListener('click', () => {
-    if (inputAge.checkValidity()) {
-        qs('#age-validation').innerText = '';
-    } else {
-        qs('#age-validation').innerText = 'Escolha uma opção.';
-    };
-    checkFormValidity();
-});
-
-inputBio.addEventListener('keyup', () => {
-    if (inputBio.checkValidity()) {
-        qs('#bio-validation').innerText = '';
-    } else {
-        qs('#bio-validation').innerText = 'Mínimo 20 caracteres.';
-    };
-    checkFormValidity();
-});
-
-inputJob.addEventListener('click', () => {
-    if (inputJob.checkValidity()) {
-        qs('#job-validation').innerText = '';
-    } else {
-        qs('#job-validation').innerText = 'Escolha uma opção.';
-    };
-    checkFormValidity();
-});
+inputValidation(inputName, `${nameId}-validation`);
+inputValidation(inputEmail, `${emailId}-validation`);
+inputValidation(inputPassword, `${passwordId}-validation`);
+inputValidation(inputBio, `${bioId}-validation`);
+inputValidation(inputAge, `${ageId}-validation`);
+inputValidation(inputJob, `${jobId}-validation`);
 
 inputInterests.forEach(e => e.addEventListener('click', () => {
     const isOneChecked = Array.prototype.slice.call(inputInterests).some(x => x.checked);
@@ -86,7 +89,7 @@ inputInterests.forEach(e => e.addEventListener('click', () => {
             e.setCustomValidity('invalid')
             qs('#interest-validation').innerText = 'Escolha uma opção.';
         };
-    })
+    });
     checkFormValidity();
 }));
 
@@ -96,4 +99,3 @@ submitBtn.addEventListener('click', e => {
     form.reset();
     checkFormValidity();
 });
-
