@@ -37,30 +37,21 @@ let checkFormValidity = () => {
 
 let inputValidation = (e, v) => {
     e.addEventListener('keyup', () => {
-        if (e.id == 'name') {
-            if (e.checkValidity()) {
-                qs(v).innerText = '';
-            } else {
-                qs(v).innerText = 'Mínimo 5 caracteres';
-            };
-        } else if (e.id == 'email') {
-            if (e.checkValidity()) {
-                qs(v).innerText = '';
-            } else {
-                qs(v).innerText = 'Email inválido';
-            };
-        } else if (e.id == 'password') {
-            if (e.checkValidity()) {
-                qs(v).innerText = '';
-            } else {
-                qs(v).innerText = 'Mínimo 6 caracteres. Máximo 20 caracteres.';
-            };
-        } else if (e.id == 'bio') {
-            if (e.checkValidity()) {
-                qs(v).innerText = '';
-            } else {
-                qs(v).innerText = 'Mínimo 20 caracteres.';
-            };
+
+        let isInputValid = e.validity.valid;
+
+        if (isInputValid) {
+            qs(v).innerText = '';
+        };
+
+        if (e.id == 'name' && !isInputValid) {
+            qs(v).innerText = 'Mínimo 5 caracteres';
+        } else if (e.id == 'email' && !isInputValid) {
+            qs(v).innerText = 'Email inválido';
+        } else if (e.id == 'password' && !isInputValid) {
+            qs(v).innerText = 'Mínimo 6 caracteres. Máximo 20 caracteres.';
+        } else if (e.id == 'bio' && !isInputValid) {
+            qs(v).innerText = 'Mínimo 20 caracteres.';
         }
         checkFormValidity();
     });
