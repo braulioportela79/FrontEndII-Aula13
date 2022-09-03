@@ -106,16 +106,6 @@ inputInterests.forEach(e => e.addEventListener('click', interestValidation));
 
 submitBtn.addEventListener('click', e => {
     e.preventDefault();
-    const isFormValid = form.checkValidity();
-    if (isFormValid) {
-        alert('Formulário Enviado!');
-    } else {
-        nameValidation();
-        emailValidation();
-        passwordValidation();
-        ageValidation();
-        bioValidation();
-        jobValidation();
-        interestValidation()
-    };
+    alert('Formulário Enviado!');
+    form.reset();
 });
