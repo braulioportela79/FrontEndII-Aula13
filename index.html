@@ -1,0 +1,140 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>FrontEnd II - Aula 13 | Validação de Formulário</title>
+    <link
+      href="https://fonts.googleapis.com/css?family=Nunito:400,300"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <link rel="stylesheet" href="./css/style.css" />
+    <script src="./js/script.js" defer></script>
+  </head>
+  <body>
+    <main>
+      <div class="form-wrapper">
+        <form action="index.html" method="post">
+          <h1>Ficha de Cadastro</h1>
+          <div class="input-wrapper">
+            <fieldset>
+              <legend><span class="number">1</span> Dados Pessoais</legend>
+
+              <label for="name">Nome:</label>
+              <input
+                type="text"
+                id="name"
+                name="user_name"
+                minlength="5"
+                required
+              />
+              <small id="name-validation"></small>
+
+              <label for="email">Email:</label>
+              <input type="email" id="mail" name="user_email" required />
+              <small id="email-validation"></small>
+
+              <label for="password">Senha:</label>
+              <input
+                type="password"
+                id="password"
+                name="user_password"
+                minlength="6"
+                maxlength="20"
+                required
+              />
+              <small id="password-validation"></small>
+
+              <label>Idade:</label>
+              <input
+                type="radio"
+                id="under_18"
+                value="under_18"
+                name="user_age"
+                required
+              /><label for="under_18" class="light">17 ou menos</label><br />
+              <input
+                type="radio"
+                id="over_18"
+                value="over_18"
+                name="user_age"
+                required
+              /><label for="over_18" class="light">18 ou mais</label>
+              <small id="age-validation"></small>
+            </fieldset>
+            <fieldset>
+              <legend><span class="number">2</span> Perfil</legend>
+
+              <label for="bio">Bio:</label>
+              <textarea
+                id="bio"
+                name="user_bio"
+                minlength="20"
+                required
+              ></textarea>
+              <small id="bio-validation"></small>
+              <label for="job">Cargo:</label>
+              <select id="job" name="user_job" required>
+                <option value="" hidden>Escolha um Cargo</option>
+                <optgroup label="Web">
+                  <option value="wordpress_developer">
+                    Desenvolvedor Wordpress
+                  </option>
+                  <option value="frontend_developer">
+                    Desenvolvedor Front-End
+                  </option>
+                  <option value="python_developer">Desenvolvedor Python</option>
+                  <option value="rails_developer">Desenvolvedor Rails</option>
+                  <option value="php_developer">Desenvolvedor PHP</option>
+                  <option value="web_designer">Web Designer</option>
+                </optgroup>
+                <optgroup label="Mobile">
+                  <option value="android_developer">
+                    Desenvolvedor Android
+                  </option>
+                  <option value="ios_developer">Desenvolvedor IOS</option>
+                  <option value="mobile_designer">Mobile Designer</option>
+                </optgroup>
+                <optgroup label="Empresarial">
+                  <option value="business_owner">Dono de Empresa</option>
+                  <option value="freelancer">Freelancer</option>
+                </optgroup>
+              </select>
+              <small id="job-validation"></small>
+              <label>Interesses:</label>
+              <input
+                type="checkbox"
+                id="development"
+                value="interest_development"
+                name="user_interest"
+                
+                
+              /><label class="light" for="development">Desenvolvimento</label
+              ><br />
+              <input
+                type="checkbox"
+                id="business"
+                value="interest_business"
+                name="user_interest"
+                
+                
+              /><label class="light" for="business">Empresarial</label>
+              <br />
+              <input
+                type="checkbox"
+                id="design"
+                value="interest_design"
+                name="user_interest"
+                
+                
+              /><label class="light" for="design">Design</label>
+              <small id="interest-validation"></small>
+            </fieldset>
+          </div>
+          <button id="submit" type="submit" disabled>Enviar</button>
+        </form>
+      </div>
+      <div class="registration-form"></div>
+    </main>
+  </body>
+</html>
