@@ -22,73 +22,61 @@ let checkFormValidity = () => {
     };
 };
 
-let nameValidation = () => {
+inputName.addEventListener('keyup', () => {
     if (inputName.checkValidity()) {
         qs('#name-validation').innerText = '';
     } else {
         qs('#name-validation').innerText = 'Mínimo 5 caracteres';
     };
     checkFormValidity();
-};
+});
 
-inputName.addEventListener('keyup', nameValidation);
-
-let emailValidation = () => {
+inputEmail.addEventListener('keyup', () => {
     if (inputEmail.checkValidity()) {
         qs('#email-validation').innerText = '';
     } else {
         qs('#email-validation').innerText = 'Email inválido';
     };
     checkFormValidity();
-}
+});
 
-inputEmail.addEventListener('keyup', emailValidation);
-
-let passwordValidation = () => {
+inputPassword.addEventListener('keyup', () => {
     if (inputPassword.checkValidity()) {
         qs('#password-validation').innerText = '';
     } else {
         qs('#password-validation').innerText = 'Mínimo 6 caracteres. Máximo 20 caracteres.';
     };
     checkFormValidity();
-};
+});
 
-inputPassword.addEventListener('keyup', passwordValidation);
-
-let ageValidation = () => {
+inputAge.addEventListener('click', () => {
     if (inputAge.checkValidity()) {
         qs('#age-validation').innerText = '';
     } else {
         qs('#age-validation').innerText = 'Escolha uma opção.';
     };
     checkFormValidity();
-};
+});
 
-inputAge.addEventListener('click', ageValidation);
-
-let bioValidation = () => {
+inputBio.addEventListener('keyup', () => {
     if (inputBio.checkValidity()) {
         qs('#bio-validation').innerText = '';
     } else {
         qs('#bio-validation').innerText = 'Mínimo 20 caracteres.';
     };
     checkFormValidity();
-};
+});
 
-inputBio.addEventListener('keyup', bioValidation);
-
-let jobValidation = () => {
+inputJob.addEventListener('click', () => {
     if (inputJob.checkValidity()) {
         qs('#job-validation').innerText = '';
     } else {
         qs('#job-validation').innerText = 'Escolha uma opção.';
     };
     checkFormValidity();
-};
+});
 
-inputJob.addEventListener('click', jobValidation);
-
-let interestValidation = () => {
+inputInterests.forEach(e => e.addEventListener('click', () => {
     const isOneChecked = Array.prototype.slice.call(inputInterests).some(x => x.checked);
     inputInterests.forEach(e => {
         if (isOneChecked) {
@@ -100,12 +88,11 @@ let interestValidation = () => {
         };
     })
     checkFormValidity();
-};
-
-inputInterests.forEach(e => e.addEventListener('click', interestValidation));
+}));
 
 submitBtn.addEventListener('click', e => {
     e.preventDefault();
     alert('Formulário Enviado!');
     form.reset();
+    submitBtn.setAttribute('disabled', 'true');
 });
