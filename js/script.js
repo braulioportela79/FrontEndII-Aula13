@@ -94,5 +94,6 @@ submitBtn.addEventListener('click', e => {
     e.preventDefault();
     alert('Formulário Enviado!');
     form.reset();
-    submitBtn.setAttribute('disabled', 'true');
+    checkFormValidity();
 });
+
