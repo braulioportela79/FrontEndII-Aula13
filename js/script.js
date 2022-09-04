@@ -1,22 +1,23 @@
-const qs = (e) => document.querySelector(e);
+const qs = e => document.querySelector(e);
+const gi = e => document.getElementById(e);
 
-const nameId = '#name'
-const inputName = qs(nameId);
+const name = 'name'
+const inputName = gi(name);
 
-const emailId = '#email'
-const inputEmail = qs(emailId);
+const email = 'email'
+const inputEmail = gi(email);
 
-const passwordId = '#password'
-const inputPassword = qs(passwordId);
+const password = 'password'
+const inputPassword = gi(password);
 
-const bioId = '#bio';
-const inputBio = qs(bioId);
+const bio = 'bio';
+const inputBio = gi(bio);
 
-const ageId = '#under_18';
-const inputAge = qs(ageId);
+const age = 'under_18';
+const inputAge = gi(age);
 
-const jobId = '#job';
-const inputJob = qs(jobId);
+const job = 'job';
+const inputJob = gi(job);
 
 const inputInterests = document.getElementsByName('user_interest');
 
@@ -35,40 +36,33 @@ let checkFormValidity = () => {
     };
 };
 
-let inputValidation = (e, v) => {
+let inputValidation = (e, v, t) => {
     e.addEventListener('keyup', () => {
 
         let isInputValid = e.validity.valid;
+        let validationId = `${v}-validation`;
 
         if (isInputValid) {
-            qs(v).innerText = '';
-        };
-
-        if (e.id == 'name' && !isInputValid) {
-            qs(v).innerText = 'Mínimo 5 caracteres';
-        } else if (e.id == 'email' && !isInputValid) {
-            qs(v).innerText = 'Email inválido';
-        } else if (e.id == 'password' && !isInputValid) {
-            qs(v).innerText = 'Mínimo 6 caracteres. Máximo 20 caracteres.';
-        } else if (e.id == 'bio' && !isInputValid) {
-            qs(v).innerText = 'Mínimo 20 caracteres.';
+            gi(validationId).innerText = '';
+        } else if (e.id == v && !isInputValid) {
+            gi(validationId).innerText = t;
         }
         checkFormValidity();
     });
 
     e.addEventListener('click', () => {
-        if (e.id == 'under_18' || e.id == 'job') {
+        if (e.id == v || e.id == v) {
             checkFormValidity();
         };
     });
 };
 
-inputValidation(inputName, `${nameId}-validation`);
-inputValidation(inputEmail, `${emailId}-validation`);
-inputValidation(inputPassword, `${passwordId}-validation`);
-inputValidation(inputBio, `${bioId}-validation`);
-inputValidation(inputAge, `${ageId}-validation`);
-inputValidation(inputJob, `${jobId}-validation`);
+inputValidation(inputName, name, 'Mínimo 5 caracteres');
+inputValidation(inputEmail, email, 'Email inválido');
+inputValidation(inputPassword, password, 'Mínimo 6 caracteres. Máximo 20 caracteres.');
+inputValidation(inputBio, bio, 'Mínimo 20 caracteres.');
+inputValidation(inputAge, age);
+inputValidation(inputJob, job);
 
 inputInterests.forEach(e => e.addEventListener('click', () => {
     const isOneChecked = Array.prototype.slice.call(inputInterests).some(x => x.checked);
