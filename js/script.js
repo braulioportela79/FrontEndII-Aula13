@@ -1,23 +1,24 @@
 const qs = e => document.querySelector(e);
 const gi = e => document.getElementById(e);
 
-const name = 'name'
-const inputName = gi(name);
 
-const email = 'email'
-const inputEmail = gi(email);
+const nameId = 'name'
+const inputName = gi(nameId);
 
-const password = 'password'
-const inputPassword = gi(password);
+const emailId = 'email'
+const inputEmail = gi(emailId);
 
-const bio = 'bio';
-const inputBio = gi(bio);
+const passwordId = 'password'
+const inputPassword = gi(passwordId);
 
-const age = 'under_18';
-const inputAge = gi(age);
+const bioId = 'bio';
+const inputBio = gi(bioId);
 
-const job = 'job';
-const inputJob = gi(job);
+const ageId = 'under_18';
+const inputAge = gi(ageId);
+
+const jobId = 'job';
+const inputJob = gi(jobId);
 
 const inputInterests = document.getElementsByName('user_interest');
 
@@ -36,11 +37,11 @@ let checkFormValidity = () => {
     };
 };
 
-let inputValidation = (e, v, t) => {
+const inputValidation = (e, v, t) => {
     e.addEventListener('keyup', () => {
+        const isInputValid = e.validity.valid;
+        const validationId = `${v}-validation`;
 
-        let isInputValid = e.validity.valid;
-        let validationId = `${v}-validation`;
 
         if (isInputValid) {
             gi(validationId).innerText = '';
@@ -51,18 +52,23 @@ let inputValidation = (e, v, t) => {
     });
 
     e.addEventListener('click', () => {
-        if (e.id == v || e.id == v) {
-            checkFormValidity();
-        };
+        const isInputValid = e.validity.valid;
+        const validationId = `${v}-validation`;
+        if (isInputValid) {
+            gi(validationId).innerText = '';
+        } else if (e.id == v && !isInputValid) {
+            gi(validationId).innerText = t;
+        }
+        checkFormValidity();
     });
 };
 
-inputValidation(inputName, name, 'Mínimo 5 caracteres');
-inputValidation(inputEmail, email, 'Email inválido');
-inputValidation(inputPassword, password, 'Mínimo 6 caracteres. Máximo 20 caracteres.');
-inputValidation(inputBio, bio, 'Mínimo 20 caracteres.');
-inputValidation(inputAge, age);
-inputValidation(inputJob, job);
+inputValidation(inputName, nameId, 'Mínimo 5 caracteres');
+inputValidation(inputEmail, emailId, 'Email inválido');
+inputValidation(inputPassword, passwordId, 'Mínimo 6 caracteres. Máximo 20 caracteres.');
+inputValidation(inputBio, bioId, 'Mínimo 20 caracteres.');
+inputValidation(inputAge, ageId);
+inputValidation(inputJob, jobId);
 
 inputInterests.forEach(e => e.addEventListener('click', () => {
     const isOneChecked = Array.prototype.slice.call(inputInterests).some(x => x.checked);
