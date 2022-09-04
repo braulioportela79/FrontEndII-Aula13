@@ -1,14 +1,13 @@
 const qs = e => document.querySelector(e);
 const gi = e => document.getElementById(e);
 
-
-const nameId = 'name'
+const nameId = 'name';
 const inputName = gi(nameId);
 
-const emailId = 'email'
+const emailId = 'email';
 const inputEmail = gi(emailId);
 
-const passwordId = 'password'
+const passwordId = 'password';
 const inputPassword = gi(passwordId);
 
 const bioId = 'bio';
@@ -28,7 +27,7 @@ const form = qs('form');
 
 inputInterests[0].setCustomValidity('invalid');
 
-let checkFormValidity = () => {
+const checkFormValidity = () => {
     const isFormValid = form.checkValidity();
     if (isFormValid) {
         submitBtn.removeAttribute('disabled');
@@ -41,13 +40,11 @@ const inputValidation = (e, v, t) => {
     e.addEventListener('keyup', () => {
         const isInputValid = e.validity.valid;
         const validationId = `${v}-validation`;
-
-
         if (isInputValid) {
             gi(validationId).innerText = '';
         } else if (e.id == v && !isInputValid) {
             gi(validationId).innerText = t;
-        }
+        };
         checkFormValidity();
     });
 
@@ -58,7 +55,7 @@ const inputValidation = (e, v, t) => {
             gi(validationId).innerText = '';
         } else if (e.id == v && !isInputValid) {
             gi(validationId).innerText = t;
-        }
+        };
         checkFormValidity();
     });
 };
@@ -74,10 +71,10 @@ inputInterests.forEach(e => e.addEventListener('click', () => {
     const isOneChecked = Array.prototype.slice.call(inputInterests).some(x => x.checked);
     inputInterests.forEach(e => {
         if (isOneChecked) {
-            e.setCustomValidity('')
+            e.setCustomValidity('');
             qs('#interest-validation').innerText = '';
         } else {
-            e.setCustomValidity('invalid')
+            e.setCustomValidity('invalid');
             qs('#interest-validation').innerText = 'Escolha uma opção.';
         };
     });
